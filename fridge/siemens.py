@@ -20,7 +20,7 @@ class Fridge:
             self.__storage.remove(item)
             return item
         except ValueError:
-            warnings.warn(f'{item} was not found in the fridge!')
+            warnings.warn(f'{item} was not found in the fridge!', self.FridgeWarning)
         pass
 
     def find(self, name):
@@ -37,12 +37,14 @@ class Fridge:
                 self.__storage.remove(item)
         return take_list
 
-
     def __iter__(self):
         return iter(self.__storage)
 
     def __len__(self):
         return len(self.__storage)
+
+    class FridgeWarning(UserWarning):
+        pass
 
     # To implement the required functionality, you will also have to implement several
     # of the special functions that typically include a double underscore.

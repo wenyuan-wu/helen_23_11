@@ -22,7 +22,7 @@ class Publication(object):
         return str(self).__eq__(str(other))
 
     def __hash__(self):
-        return hash((self.__author, self.__title, self.__year))
+        return hash((tuple(self.__author), self.__title, self.__year))
 
 
     def get_title(self):
