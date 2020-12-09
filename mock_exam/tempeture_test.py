@@ -2,44 +2,40 @@ import random
 
 
 class Temperature:
-    def __init__(self, temp):
-        self.__temp = temp
+    def __init__(self, degree: float):
+        self.__degree = degree
 
     def get_celsius(self):
-        return self.__temp
+        return self.__degree
 
     def get_fahrenheit(self):
-        return '{:.2f}'.format(self.__temp * (9/5) + 32)
+        return round((self.__degree * (9/5) + 32), 2)
 
 
 class Series:
-    def __init__(self, list_len):
-        self.list_len = list_len
-        self.sum = 0
+    def __init__(self, temp_list: [Temperature]):
+        self.temp_list = temp_list
 
     def get_average_celsius(self):
-        for i in self.list:
-            self.sum += i
-        return round(self.sum/len(self.list),2)
+        degree_sum = 0
+        for i in self.temp_list:
+            degree_sum += i.get_celsius()
+        return round(degree_sum/len(self.temp_list), 2)
 
-    def mockMeasurements(self):
-
-        x = 0
-        li = []
-        while x < self:
-            li.append(random.randint(36,42))
-            x += 1
-        return li
-
+    @staticmethod
+    def mockMeasurements(n):
+        temp_list = []
+        for i in range(0, n):
+            temp_list.append(Temperature(random.randint(36, 42)))
+            i += 1
+        return temp_list
 
 
 t = Temperature(39)
-print(t.get_celsius())
-print(t.get_fahrenheit())
+assert(t.get_celsius() == 39)
+assert(t.get_fahrenheit() == 102.20)
 ms = Series.mockMeasurements(3)
-print(ms)
-print(len(ms))
+assert(len(ms) == 3)
 ms.append(t)
 s = Series(ms)
-print(ms)
-print(s.get_average_celsius())
+assert(36 <= s.get_average_celsius() <= 42)
