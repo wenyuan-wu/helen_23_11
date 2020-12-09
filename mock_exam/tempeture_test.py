@@ -24,7 +24,7 @@ class Series:
         return round(degree_sum/len(self.temp_list), 2)
 
     @staticmethod
-    def mockMeasurements(n):
+    def mockMeasurements(n: int):
         temp_list = []
         for i in range(0, n):
             temp_list.append(Temperature(random.randint(36, 42)))
