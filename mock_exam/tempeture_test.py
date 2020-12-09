@@ -1,4 +1,5 @@
 import random
+from typing import List
 
 
 class Temperature:
@@ -13,7 +14,7 @@ class Temperature:
 
 
 class Series:
-    def __init__(self, temp_list: [Temperature]):
+    def __init__(self, temp_list: List[Temperature]):
         self.temp_list = temp_list
 
     def get_average_celsius(self):
